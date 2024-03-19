@@ -40,7 +40,7 @@ jobs:
       with:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
-        path: isotc211.geolexica.org
+        path: .
         fetch-depth: 1
 
     - name: Use Ruby
@@ -54,7 +54,7 @@ jobs:
       with:
         token: ${{ github.token }}
         repository: geolexica/isotc211-glossary
-        path: isotc211.geolexica.org/isotc211-glossary
+        path: isotc211-glossary
         ref: refs/heads/generated_concepts_from_20231214_glossary_with_math
         fetch-depth: 1
 
@@ -63,13 +63,12 @@ jobs:
       with:
         token: ${{ github.token }}
         repository: geolexica/breviter
-        path: isotc211.geolexica.org/breviter
+        path: breviter
         ref: main
         fetch-depth: 1
         submodules: true
 
     - name: Cache relaton
-      working-directory: isotc211.geolexica.org
       uses: actions/cache@v3
       with:
         path: relaton
@@ -81,31 +80,25 @@ jobs:
       uses: actions/configure-pages@v3
 
     - name: Use Node
-      working-directory: isotc211.geolexica.org
       uses: actions/setup-node@v3
       with:
         node-version: '12'
         cache: 'npm'
 
     - run: npm install
-      working-directory: isotc211.geolexica.org
 
     - name: Build staging_site
-      working-directory: isotc211.geolexica.org
       run: make _site
 
     - name: Compress files
-      working-directory: isotc211.geolexica.org
       run: zip -9 -r site.zip _site
 
     - uses: actions/upload-artifact@v3
-      working-directory: isotc211.geolexica.org
       with:
         name: _site
         path: site.zip
 
     - name: Upload artifact
-      working-directory: isotc211.geolexica.org
       uses: actions/upload-pages-artifact@v2
       with:
         path: _site

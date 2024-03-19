@@ -50,22 +50,20 @@ jobs:
         bundler-cache: true
 
     - name: Checkout data
-      working-directory: isotc211.geolexica.org
       uses: actions/checkout@v3
       with:
         token: ${{ github.token }}
         repository: geolexica/isotc211-glossary
-        path: isotc211-glossary
+        path: isotc211.geolexica.org/isotc211-glossary
         ref: refs/heads/generated_concepts_from_20231214_glossary_with_math
         fetch-depth: 1
 
     - name: Checkout breviter
-      working-directory: isotc211.geolexica.org
       uses: actions/checkout@v3
       with:
         token: ${{ github.token }}
         repository: geolexica/breviter
-        path: breviter
+        path: isotc211.geolexica.org/breviter
         ref: main
         fetch-depth: 1
         submodules: true

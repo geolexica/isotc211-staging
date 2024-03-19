@@ -75,7 +75,6 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles(join(inputs.concepts-path, '/**/*.yaml')) }}
 
     - name: Setup Pages
-      working-directory: isotc211.geolexica.org
       id: pages
       uses: actions/configure-pages@v3
 

@@ -41,6 +41,7 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
         path: .
+        ref: refs/heads/adding_staging_config
         fetch-depth: 1
 
     - name: Use Ruby
@@ -87,7 +88,10 @@ jobs:
     - run: npm install
 
     - name: Build staging_site
-      run: make _site
+      run: |
+        make data
+        make bundle
+        JEKYLL_ENV=staging NODE_ENV=staging bundle exec jekyll build --config _config_staging.yml
 
     - name: Compress files
       run: zip -9 -r site.zip _site

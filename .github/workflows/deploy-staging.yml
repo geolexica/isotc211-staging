@@ -41,7 +41,6 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
         path: .
-        ref: refs/heads/adding_staging_config
         fetch-depth: 1
 
     - name: Use Ruby

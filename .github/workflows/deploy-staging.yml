@@ -46,7 +46,7 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
         path: .
-        ref: refs/heads/${{ github.event.inputs.glossary_branch }}
+        ref: refs/heads/add_config_for_glossarist
         fetch-depth: 1
 
     - name: Use Ruby
@@ -61,7 +61,7 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211-glossary
         path: isotc211-glossary
-        ref: refs/heads/generated_concepts_from_20231214_glossary_with_math
+        ref: refs/heads/${{ github.event.inputs.glossary_branch }}
         fetch-depth: 1
 
     - name: Checkout breviter

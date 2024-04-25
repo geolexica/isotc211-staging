@@ -2,6 +2,11 @@ name: deploy-staging
 
 on:
   workflow_dispatch:
+    inputs:
+      glossary_branch:
+        description: 'branch for reading glossary'     
+        required: true
+        default: 'staging'
   repository_dispatch:
     types:
     - deploy
@@ -41,7 +46,7 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
         path: .
-        ref: refs/heads/add_config_for_glossarist
+        ref: refs/heads/${{ github.event.inputs.glossary_branch }}
         fetch-depth: 1
 
     - name: Use Ruby

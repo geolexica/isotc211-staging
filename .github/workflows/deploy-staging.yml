@@ -46,7 +46,6 @@ jobs:
         token: ${{ github.token }}
         repository: geolexica/isotc211.geolexica.org
         path: .
-        ref: refs/heads/add_config_for_glossarist
         fetch-depth: 1
 
     - name: Use Ruby
